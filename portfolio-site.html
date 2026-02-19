@@ -30,7 +30,7 @@
             position: relative;
         }
 
-        /* Animated grid background */
+        /* Fundo animado */
         body::before {
             content: '';
             position: fixed;
@@ -52,7 +52,7 @@
             100% { background-position: 50px 50px; }
         }
 
-        /* Floating binary numbers */
+        
         .binary-bg {
             position: fixed;
             top: 0;
@@ -90,7 +90,7 @@
             }
         }
 
-        /* Main container */
+        /* Main  */
         .container {
             position: relative;
             z-index: 2;
@@ -98,7 +98,7 @@
             margin: 0 auto;
             padding: 0 20px;
 }
-        /* Header / Navigation */
+        /* Header / Navegação */
         header {
             padding: 30px 0;
             position: sticky;
@@ -159,7 +159,7 @@
             left: -20px;
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
             min-height: 90vh;
             display: flex;
@@ -260,7 +260,7 @@
             left: 0;
         }
 
-        /* Section styling */
+        /* Estilização */
         section {
             padding: 100px 20px;
             position: relative;
@@ -277,4 +277,36 @@
             display: inline-block;
             left: 50%;
             transform: translateX(-50%);
+        }
+        
+
+        .section-title::before {
+            content: '// ';
+            color: var(--accent-green);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyber-blue), transparent);
+        }
+
+        /* Sobre */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            background: rgba(26, 41, 66, 0.5);
+            padding: 40px;
+            border: 1px solid var(--cyber-blue);
+            border-left: 4px solid var(--accent-green);
+            position: relative;
         }
