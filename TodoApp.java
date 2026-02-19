@@ -66,7 +66,6 @@ public class TodoApp {
     }
 
 
-    // ── Utilitários de UI ─────────────────────────────────────────────────────
     static void cabecalho(String titulo) {
         System.out.println();
         System.out.println("╔══════════════════════════════════════╗");
