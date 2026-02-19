@@ -41,7 +41,7 @@ public class TodoApp {
             return String.format("  %s #%d - %s%s%s", status, id, titulo, catPart, prazoPart);
         }
     }
-
+// Funções de persistência
     static void salvar() throws IOException {
         try (PrintWriter pw = new PrintWriter(new FileWriter(ARQUIVO))) {
             for (Tarefa t : tarefas) pw.println(t.toCSV());
@@ -65,11 +65,41 @@ public class TodoApp {
         return tarefas.stream().mapToInt(t -> t.id).max().orElse(0) + 1;
     }
 
-
+// Funções de interface
     static void cabecalho(String titulo) {
         System.out.println();
         System.out.println("╔══════════════════════════════════════╗");
         System.out.printf ("║  %-36s║%n", titulo);
         System.out.println("╚══════════════════════════════════════╝");
+    }
+
+
+    static String ler(String prompt) {
+        System.out.print(prompt);
+        return scanner.nextLine().trim();
+    }
+
+    // Funções principais do menu   
+    static void listar(boolean apenasAbertas) {
+        List<Tarefa> lista = apenasAbertas
+            ? tarefas.stream().filter(t -> !t.concluida).collect(java.util.stream.Collectors.toList())
+            : tarefas;
+
+        if (lista.isEmpty()) {
+            System.out.println("  (nenhuma tarefa encontrada)");
+            return;
+        }
+
+        // Agrupa por categoria
+        Map<String, List<Tarefa>> grupos = new LinkedHashMap<>();
+        for (Tarefa t : lista) {
+            grupos.computeIfAbsent(t.categoria.isEmpty() ? "Sem categoria" : t.categoria,
+                                   k -> new ArrayList<>()).add(t);
+        }
+
+        for (Map.Entry<String, List<Tarefa>> e : grupos.entrySet()) {
+            System.out.println("\n  ▸ " + e.getKey());
+            e.getValue().forEach(System.out::println);
+        }
     }
 }
